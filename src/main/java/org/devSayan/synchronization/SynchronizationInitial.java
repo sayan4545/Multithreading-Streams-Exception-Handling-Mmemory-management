@@ -2,17 +2,22 @@ package org.devSayan.synchronization;
 
 public class SynchronizationInitial {
     private static int counter = 0;
+
+    private static synchronized void incrementCounter() {
+        counter++;
+    }
+
     public static void main(String[] args) {
-        
+
         Thread one = new Thread(()->{
             for(int i=0;i<10000;i++){
-                counter++;
+                incrementCounter();
             }
         });
 
         Thread two = new Thread(() -> {
             for (int i = 0; i < 10000; i++) {
-                counter++;
+                incrementCounter();
             }
         });
 
@@ -28,5 +33,5 @@ public class SynchronizationInitial {
 
         System.out.println("Final counter value: " + counter);
     }
-    
+
 }
